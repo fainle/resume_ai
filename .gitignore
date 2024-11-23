@@ -142,3 +142,4 @@ cython_debug/
 csv
 dump.rdb
 readme
+data
