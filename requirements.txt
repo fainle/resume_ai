@@ -1,0 +1,8 @@
+openai
+langchain
+pymilvus
+langchain-openai
+transformers
+python-dotenv
+tiktoken
+langchain-community
