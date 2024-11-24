@@ -15,7 +15,8 @@ class ResumeProcessor:
             "basic_info": resume_data.get("basic_info", {}),
             "work_experience": resume_data.get("work_experience", []),
             "skills": resume_data.get("skills", []),
-            "education": resume_data.get("education", [])
+            "education": resume_data.get("education", []),
+            "professional_summary": resume_data.get("professional_summary", [])
         }
         
         return structured_resume

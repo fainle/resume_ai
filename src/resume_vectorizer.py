@@ -22,8 +22,11 @@ class ResumeVectorizer:
             FieldSchema(name='id', dtype=DataType.INT64, is_primary=True, auto_id=True),
             FieldSchema(name='resume_vector', dtype=DataType.FLOAT_VECTOR, dim=1536),
             FieldSchema(name="content", dtype=DataType.VARCHAR, max_length=65535),
-            FieldSchema(name="skills", dtype=DataType.VARCHAR, max_length=2048),
-            FieldSchema(name="experience", dtype=DataType.VARCHAR, max_length=10240),
+            FieldSchema(name="basic_info", dtype=DataType.VARCHAR, max_length=65535),
+            FieldSchema(name="professional_summary", dtype=DataType.VARCHAR, max_length=65535),
+            FieldSchema(name="skills", dtype=DataType.VARCHAR, max_length=65535),
+            FieldSchema(name="work_experience", dtype=DataType.VARCHAR, max_length=65535),
+            FieldSchema(name="education", dtype=DataType.VARCHAR, max_length=65535)
         ]
         # 定义结构
         schema = CollectionSchema(fields=fields, description="简历基础结构")
@@ -52,10 +55,13 @@ class ResumeVectorizer:
             data = {
                 "resume_vector": vector,  # 直接使用 numpy array，不要包装在列表中
                 "content": str(resume_text),
-                "skills": json.dumps(parsed_data.get("skills", [])),
-                "experience": json.dumps(parsed_data.get("experience", []))
+                "basic_info": json.dumps(parsed_data.get("basic_info", {})),
+                "professional_summary": json.dumps(parsed_data.get("professional_summary", [])),
+                "skills": json.dumps(parsed_data.get("skills", {})),
+                "work_experience": json.dumps(parsed_data.get("work_experience", [])),
+                "education": json.dumps(parsed_data.get("education", {})),
             }
-            
+        
             # 调试信息
             # print(f"Vector shape: {vector.shape}")
             # print(f"Vector type: {type(vector)}")
@@ -86,7 +92,7 @@ class ResumeVectorizer:
             anns_field="resume_vector",
             param=search_params,
             limit=top_k,
-            output_fields=["content", "skills", "experience"]
+            output_fields=["content"]
         )
         
         return results[0]  # 返回第一个查询的结果
