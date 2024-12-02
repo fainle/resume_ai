@@ -6,3 +6,5 @@ transformers
 python-dotenv
 tiktoken
 langchain-community
+jq
+click

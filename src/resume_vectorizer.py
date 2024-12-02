@@ -2,7 +2,7 @@ import os
 import json
 import numpy as np
 
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai.embeddings import OpenAIEmbeddings
 from pymilvus import connections, Collection, DataType, FieldSchema, CollectionSchema
 from dotenv import load_dotenv
 
